@@ -21,7 +21,6 @@ CONFIG_DIR=$KERNEL_DIR/arch/arm64/configs
 CONFIG=vince_defconfig
 CORES=$(grep -c ^processor /proc/cpuinfo)
 THREAD="-j$CORES"
-CROSS_COMPILE="ccache"
 CROSS_COMPILE=/home/william/Kernel_vince/aarch64-elf-gcc-9.x/bin/aarch64-elf-
 CROSS_COMPILE_ARM32=/home/william/Kernel_vince/arm-eabi-gcc-9.x/bin/arm-eabi-
 
@@ -62,7 +61,7 @@ while true; do
 	if [ "$choice" == "1" ]; then
 		echo -e ""
 		make  O=out $CONFIG $THREAD &>/dev/null
-		make  O=out $THREAD & pid=$!   
+		make  O=out $THREAD -O3 & pid=$!   
 	
 BUILD_START=$(date +"%s")
 DATE=`date`
